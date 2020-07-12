@@ -8,6 +8,15 @@
             font-weight: bold;
         }
     }
+    .footer{
+        width: 100%;
+        text-align: center;
+        height: 70px;
+        p{
+            font-size: 22px;
+            font-weight: bold;
+        }
+    }
     .contenedor{
         width: calc(100% - 100px);
         margin: 0 50px;
@@ -33,6 +42,10 @@
                 padding: 0px;
                 position: relative;
                 top: 2px;
+                p{
+                    margin: 0;
+                    padding: 0;
+                }
             }
             .btn{
                 width: 40%;

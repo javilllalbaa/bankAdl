@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   selectProduct = new FormGroup({
     product_select: new FormControl('', Validators.required),
-    bank_select: new FormControl('BANCO_1', Validators.required)
+    bank_select: new FormControl('BANCO_2', Validators.required)
   });
 
   ngOnInit(): void {
@@ -35,10 +35,18 @@ export class HomeComponent implements OnInit {
         if( this.banks.indexOf(p.accountInformation.bank) < 0){
           this.banks.push(p.accountInformation.bank)
         }
-        this.bankSelect("BANCO_1")
+        this.bankSelect("BANCO_2")
         //this.products = response.products.product.filter(p => p.accountInformation.bank === "BANCO_1")
       })
-    }) 
+    })
+    setTimeout(function(){ 
+      console.log("height...", screen.height)
+      var contenedor = document.getElementsByClassName("contenedor");
+      var height = screen.height - 230
+      contenedor[0]['style'].height = height + "px"
+      contenedor[0]['style']['overflow-y'] = "scroll"
+      contenedor[0]['style']['overflow-x'] = "hidden"
+    }, 500);
   }
 
   bankSelect(bank_select): void{
@@ -80,6 +88,10 @@ export class HomeComponent implements OnInit {
       return "Cuenta deposito"
     }else
     return "Hola"
+  }
+
+  progressBar(e): Number{
+    return parseInt(e)
   }
 
   onSubmit(): void {
