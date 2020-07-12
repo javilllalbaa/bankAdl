@@ -31,34 +31,39 @@ export class HomeComponent implements OnInit {
     console.log("This is a test...")
     this.store.dispatch({type: "GET_PRODUCS"})
     this.store.select('products').subscribe(response => {
-      this.products = response.products.product
       response.products.product.map(p => {
         if( this.banks.indexOf(p.accountInformation.bank) < 0){
           this.banks.push(p.accountInformation.bank)
         }
         this.bankSelect("BANCO_1")
+        //this.products = response.products.product.filter(p => p.accountInformation.bank === "BANCO_1")
       })
     }) 
   }
 
   bankSelect(bank_select): void{
     this.productTypes = []
-    this.products.map(p => {
-      if(bank_select === p.accountInformation.bank || this.selectProduct.value.bank_select === p.accountInformation.bank){
-        if( this.productTypes.indexOf(p.accountInformation.productType) < 0){
-          this.productTypes.push(p.accountInformation.productType)
+    this.store.select('products').subscribe(response => {
+      response.products.product.map(p => {
+        if(bank_select === p.accountInformation.bank || this.selectProduct.value.bank_select === p.accountInformation.bank){
+          if( this.productTypes.indexOf(p.accountInformation.productType) < 0){
+            this.productTypes.push(p.accountInformation.productType)
+          }
+          this.products = response.products.product.filter(p => p.accountInformation.bank === bank_select || p.accountInformation.bank === this.selectProduct.value.bank_select )
         }
-      }
+      })
     })
   }
 
   productSelect(): void{
-    console.log(this.selectProduct.value.product_select, this.selectProduct.value.bank_select)
-    //debugger
+    this.store.select('products').subscribe(response => {
+      response.products.product.map(p => {
+        this.products = response.products.product.filter(p => p.accountInformation.productType === this.selectProduct.value.product_select && p.accountInformation.bank === this.selectProduct.value.bank_select )
+      })
+    })
   }
 
   onSubmit(): void {
-
   }
 
 }
