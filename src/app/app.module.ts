@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Reducer } from './reducers/index';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { FormatPipe } from './pipes/format.pipe'
 
 @NgModule({
@@ -19,7 +20,8 @@ import { Reducer } from './reducers/index';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ products: Reducer })
+    StoreModule.forRoot({ products: Reducer }),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,43 +4,49 @@ import { Store, select } from '@ngrx/store'
 import { getTest } from './../../../actions/index'
 import { Observable } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  providers: [NgbModalConfig, NgbModal]
 })
 export class HomeComponent implements OnInit {
 
   constructor(
     private homeService: HomeService,
-    private store: Store<any>
-  ){}
+    private store: Store<any>,
+    config: NgbModalConfig,
+    private modalService: NgbModal
+  ){
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   productTypes = [];
   banks = [];
   products = [];
+  infoProduct = {}
 
   selectProduct = new FormGroup({
     product_select: new FormControl('', Validators.required),
-    bank_select: new FormControl('BANCO_2', Validators.required)
+    bank_select: new FormControl('BANCO_1', Validators.required)
   });
 
   ngOnInit(): void {
-    console.log("This is a test...")
     this.store.dispatch({type: "GET_PRODUCS"})
     this.store.select('products').subscribe(response => {
       response.products.product.map(p => {
         if( this.banks.indexOf(p.accountInformation.bank) < 0){
           this.banks.push(p.accountInformation.bank)
         }
-        this.bankSelect("BANCO_2")
+        this.bankSelect("BANCO_1")
         //this.products = response.products.product.filter(p => p.accountInformation.bank === "BANCO_1")
       })
     })
     setTimeout(function(){ 
-      console.log("height...", screen.height)
       var contenedor = document.getElementsByClassName("contenedor");
       var height = screen.height - 230
       contenedor[0]['style'].height = height + "px"
@@ -81,13 +87,11 @@ export class HomeComponent implements OnInit {
         return "Credito"
       case "CERTIFIED_DEPOSIT_TERM":
         return "Certificado de deposito"
+      case "CURRENT_ACCOUNT":
+        return "Cuenta actual"
       default:
       return ""
-  }
-    if(text == "DEPOSIT_ACCOUNT"){
-      return "Cuenta deposito"
-    }else
-    return "Hola"
+    }
   }
 
   progressBar(e): Number{
@@ -95,6 +99,21 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit(): void {
+  }
+
+  open(product) {
+    this.products = this.products.map(p => {
+      return Object.assign({}, p, { selected : false })
+    })
+    setTimeout(() => { 
+      this.products = this.products.map(p => {
+        if(p.id == product.id && p.selected == false){
+          return Object.assign({}, p, { selected : true })
+        }else{
+          return Object.assign({}, p, { selected : false })
+        } 
+      })
+    }, 200);
   }
 
 }

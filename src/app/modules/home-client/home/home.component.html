@@ -29,7 +29,7 @@
         </div>
         <div class="row">
             <div *ngFor="let product of products; let indice = index" class="col-sm-6 col-md-4">
-                <div class="card m-1">
+                <div class="card m-1" [ngClass]="{'open': product.selected}">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-12">
@@ -91,11 +91,21 @@
                                         <div class="progress-bar" role="progressbar" [ngStyle]="{'width': progressBar(product.capacity) + '%'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Uso del {{progressBar(product.capacity)}}%</div>
                                     </div>
                                 </div>
+                                <div class="row" *ngIf="product.typeAccount == 'CURRENT_ACCOUNT'">
+                                    <div class="col-sm-6 card-key">Saldo actual:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances">{{ product.productAccountBalances.saldo_actual.amount | format}}</p></div>
+                                    <div class="col-sm-6 card-key">Saldo disponible:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances">{{product.productAccountBalances.saldo_disponible.amount | format}}</p></div>
+                                    <div class="col-sm-6 card-key">Saldo ayer:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances">{{product.productAccountBalances.saldo_ayer.amount | format}}</p></div>
+                                </div>
                             </div>    
                         </div>
                         <div class="row">
-                            <div class="col-sm-12">
-                                <button type="button" class="btn btn-primary">Ver más</button>
+                            <div class="col-sm-12 p-0" *ngIf="product.productAccountBalances">
+                                <div class="btn">
+                                    ver más <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,6 +113,7 @@
             </div>
         </div>
     </div>
+
     <div class="footer center-vertical">
         <p>Javier Alexander Villalba Aguirre</p>
     </div>
