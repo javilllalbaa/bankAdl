@@ -9,12 +9,14 @@
                     <div class="form-group">
                       <div class="row">
                         <div class="col-sm-6">
+                            <label for="exampleFormControlSelect1">Seleccione el Banco</label>
                             <select type="text" formControlName="bank_select"
                               (change)="bankSelect('')" class="custom-select w-100">
                               <option *ngFor="let bank of banks; let indice = index" [ngValue]="bank">{{bank}}</option>
                             </select>
                         </div>
                         <div class="col-sm-6">
+                          <label for="exampleFormControlSelect1">Seleccione producto</label>  
                           <select type="text" formControlName="product_select"
                             (change)="productSelect()" class="custom-select w-100">
                             <option *ngFor="let productType of productTypes; let indice = index" [ngValue]="productType">{{productType}}</option>
@@ -29,9 +31,32 @@
             <div *ngFor="let product of products; let indice = index" class="col-sm-6 col-md-4">
                 <div class="card m-1">
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h5 class="card-title text-center">{{product.typeAccount}}</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="icono">
+                                    <i class="fa fa-id-card-o" 
+                                        [ngClass]=
+                                            "{ 
+                                                'fa': true, 
+                                                'fa-id-card-o': product.typeAccount == 'DEPOSIT_ACCOUNT', 
+                                                'fa-credit-card-alt': product.typeAccount == 'CREDIT_CARD', 
+                                                'fa-taxi': product.typeAccount == 'CREDIT', 
+                                                'fa-address-card-o': product.typeAccount == 'CERTIFIED_DEPOSIT_TERM',
+                                                'fa-cc': product.typeAccount == 'CURRENT_ACCOUNT'
+                                            }"
+                                    ></i>
+                                </div>
+                            </div>    
+                            <div class="col-sm-9">
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>    
+                        </div>
                     </div>
                 </div>
             </div>
