@@ -4,19 +4,25 @@
     </div>
     <div class="contenedor">
         <div class="row">
-            <div class="col-sm-6">
-                <form>
+            <div class="col-sm-12">
+                <form (ngSubmit)="onSubmit()" [formGroup]="selectProduct">
                     <div class="form-group">
-                      <label for="exampleFormControlSelect1">Seleccione los productos del banco</label>
-                      <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
+                      <div class="row">
+                        <div class="col-sm-6">
+                            <select type="text" formControlName="bank_select"
+                              (change)="bankSelect('')" class="custom-select w-100">
+                              <option *ngFor="let bank of banks; let indice = index" [ngValue]="bank">{{bank}}</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                          <select type="text" formControlName="product_select"
+                            (change)="productSelect()" class="custom-select w-100">
+                            <option *ngFor="let productType of productTypes; let indice = index" [ngValue]="productType">{{productType}}</option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
-                  </form>
+                </form>
             </div>
         </div>
         <div class="row">
