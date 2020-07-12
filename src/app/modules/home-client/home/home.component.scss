@@ -14,9 +14,33 @@
         padding: 10px;
         border-radius: 5px;
         box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
-        .icono{
-            text-align: center;
-            font-size: 50px;
+        .card{
+            height: 190px;
+            overflow: hidden;
+            .icono{
+                text-align: center;
+                font-size: 50px;
+            }
+            .card-key{
+                font-size: 12px;
+                font-weight: bold;
+                padding: 0px;
+            }
+            .card-value{
+                text-align: left;
+                margin-left: 0px;
+                font-size: 12px;
+                padding: 0px;
+                position: relative;
+                top: 2px;
+            }
+            .btn{
+                width: 40%;
+                margin: 0 30%;
+                position: relative;
+                bottom: -5px;
+                cursor: pointer;
+            }
         }
     }
 }

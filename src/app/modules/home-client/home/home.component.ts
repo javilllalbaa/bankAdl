@@ -63,6 +63,25 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  chanceProductTypes(text): string{
+    switch (text) {
+      case "DEPOSIT_ACCOUNT":
+        return "Cuenta deposito"
+      case "CREDIT_CARD":
+        return "Tarjeta de credito"
+      case "CREDIT":
+        return "Credito"
+      case "CERTIFIED_DEPOSIT_TERM":
+        return "Certificado de deposito"
+      default:
+      return ""
+  }
+    if(text == "DEPOSIT_ACCOUNT"){
+      return "Cuenta deposito"
+    }else
+    return "Hola"
+  }
+
   onSubmit(): void {
   }
 

@@ -19,7 +19,7 @@
                           <label for="exampleFormControlSelect1">Seleccione producto</label>  
                           <select type="text" formControlName="product_select"
                             (change)="productSelect()" class="custom-select w-100">
-                            <option *ngFor="let productType of productTypes; let indice = index" [ngValue]="productType">{{productType}}</option>
+                            <option *ngFor="let productType of productTypes; let indice = index" [ngValue]="productType">{{chanceProductTypes(productType)}}</option>
                           </select>
                         </div>
                       </div>
@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h5 class="card-title text-center">{{product.typeAccount}}</h5>
+                                <h5 class="card-title text-center">{{chanceProductTypes(product.typeAccount)}}</h5>
                             </div>
                         </div>
                         <div class="row">
@@ -53,9 +53,32 @@
                                 </div>
                             </div>    
                             <div class="col-sm-9">
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <div class="row">
+                                    <div class="col-sm-6 card-key">Identificador:</div>
+                                    <div class="col-sm-6 card-value">{{product.id}}</div>
+                                </div>
+                                <div class="row" *ngIf="product.typeAccount == 'CERTIFIED_DEPOSIT_TERM'">
+                                    <div class="col-sm-6 card-key">Valor:</div>
+                                    <div class="col-sm-6 card-value">{{product.productAccountBalances.valor_constitucion.amount  | format}}</div>
+                                    <div class="col-sm-6 card-key">Intereses causados:</div>
+                                    <div class="col-sm-6 card-value">{{product.productAccountBalances.intereses_causados.amount | format}}</div>
+                                    <div class="col-sm-6 card-key">Interes pagado:</div>
+                                    <div class="col-sm-6 card-value">{{product.productAccountBalances.interes_pagado.amount | format}}</div>
+                                </div>
+                                <div class="row" *ngIf="product.typeAccount == 'DEPOSIT_ACCOUNT'">
+                                    <div class="col-sm-6 card-key">Saldo actual:</div>
+                                    <div class="col-sm-6 card-value">{{product.productAccountBalances.saldo_actual.amount | format}}</div>
+                                    <div class="col-sm-6 card-key">Saldo disponible:</div>
+                                    <div class="col-sm-6 card-value">{{product.productAccountBalances.saldo_disponible.amount | format}}</div>
+                                    <div class="col-sm-6 card-key">Saldo canje:</div>
+                                    <div class="col-sm-6 card-value">{{product.productAccountBalances.saldo_canje.amount | format}}</div>
+                                </div>
                             </div>    
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="button" class="btn btn-primary">Ver más</button>
+                            </div>
                         </div>
                     </div>
                 </div>
