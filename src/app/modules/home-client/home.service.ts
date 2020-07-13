@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Data } from './../../mockup/data'
 // import data from 'src/app/mockup/data'
 
@@ -13,19 +13,10 @@ export class HomeService {
 
   constructor(
     private http: HttpClient
-  ) {
-    // this.getJSON().subscribe(data => {
-    //   console.log(data);
-    // }); 
-  }
+  ) {}
 
   public getJSON(): Observable<any> {
-    return this.http.get("src/app/mockup/data.json");
-  }
-
-  public getData(){
-    console.log("Hola...", this.data)
-    return "Hola canciono"
+    return of(Data)
   }
 
 }

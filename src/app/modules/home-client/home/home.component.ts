@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { resquestData } from 'src/app/redux/product.action';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -24,7 +26,8 @@ export class HomeComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.store.dispatch({type: "GET_PRODUCS"})
+    //this.store.dispatch({type: "GET_PRODUCS"})
+    this.store.dispatch(resquestData());
     this.store.select('products').subscribe(response => {
       response.products.product.map(p => {
         if( this.banks.indexOf(p.accountInformation.bank) < 0){

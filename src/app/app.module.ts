@@ -5,8 +5,10 @@ import { StoreModule } from '@ngrx/store'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Reducer } from './reducers/index';
+import { Reducer } from './redux/index';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './redux/product.effect';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot({ products: Reducer }),
+    //toreModule.forFeature('products', Reducer),
+    EffectsModule.forRoot([ProductEffects]),
     NgbModule
   ],
   providers: [],
