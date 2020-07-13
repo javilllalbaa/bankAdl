@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from './../home.service'
 import { Store } from '@ngrx/store'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -12,7 +11,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class HomeComponent implements OnInit {
 
   constructor(
-    private homeService: HomeService,
     private store: Store<any>
   ){}
 
