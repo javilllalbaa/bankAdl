@@ -64,6 +64,16 @@
                                     <div class="col-sm-6 card-value">{{product.productAccountBalances.intereses_causados.amount | format}}</div>
                                     <div class="col-sm-6 card-key">Interes pagado:</div>
                                     <div class="col-sm-6 card-value">{{product.productAccountBalances.interes_pagado.amount | format}}</div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Tasa nominal:</div>
+                                    <div class="col-sm-6 card-value" *ngIf="product.productAccountBalances && product.selected">{{product.productAccountBalances.tasa_nominal.amount | format}}</div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Valor constitucion:</div>
+                                    <div class="col-sm-6 card-value" *ngIf="product.productAccountBalances && product.selected">{{product.productAccountBalances.valor_constitucion.amount | format}}</div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Fecha de inicio:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances && product.selected">{{product.openedDate | date: 'shortDate'}}</p></div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Fecha de cierre:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances && product.selected">{{product.closedDate | date: 'shortDate'}}</p></div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Última fecha de transacción:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances && product.selected">{{product.lastTransactionDate | date: 'shortDate'}}</p></div>
                                 </div>
                                 <div class="row" *ngIf="product.typeAccount == 'DEPOSIT_ACCOUNT'">
                                     <div class="col-sm-6 card-key">Saldo actual:</div>
@@ -72,13 +82,33 @@
                                     <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances">{{product.productAccountBalances.saldo_disponible.amount | format}}</p></div>
                                     <div class="col-sm-6 card-key">Saldo canje:</div>
                                     <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances">{{product.productAccountBalances.saldo_canje.amount | format}}</p></div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Saldo ayer:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances && product.selected">{{product.productAccountBalances.saldo_ayer.amount | format}}</p></div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Saldo 48h:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances && product.selected">{{product.productAccountBalances.saldo_canje_48_horas.amount | format}}</p></div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Saldo 48h:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances && product.selected">{{product.productAccountBalances.saldo_canje_72_horas.amount | format}}</p></div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Fecha de vencimiento:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances && product.selected">{{product.dueDate | date: 'shortDate'}}</p></div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Última fecha de transacción:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances && product.selected">{{product.lastTransactionDate | date: 'shortDate'}}</p></div>
                                 </div>
                                 <div class="row" *ngIf="product.typeAccount == 'CREDIT_CARD'">
                                     <div class="col-sm-6 card-key">Cupo total:</div>
                                     <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances">{{ product.productAccountBalances.cupo_total.amount | format}}</p></div>
                                     <div class="col-sm-6 card-key">Cupo disponible:</div>
                                     <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances">{{product.productAccountBalances.cupo_disponible_compras_pesos.amount | format}}</p></div>
-                                    <div class="col-sm-12 progress" *ngIf="product.capacity">
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Cupo avances:</div>
+                                    <div class="col-sm-6 card-value" *ngIf="product.productAccountBalances && product.selected">{{product.productAccountBalances.cupo_disponible_avances_pesos.amount | format}}</div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Saldo mora:</div>
+                                    <div class="col-sm-6 card-value" *ngIf="product.productAccountBalances && product.selected">{{product.productAccountBalances.saldo_mora_pesos.amount | format}}</div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Cupo compras:</div>
+                                    <div class="col-sm-6 card-value" *ngIf="product.productAccountBalances && product.selected">{{product.productAccountBalances.cupo_disponible_compras_pesos.amount | format}}</div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Pago minimo:</div>
+                                    <div class="col-sm-6 card-value" *ngIf="product.productAccountBalances && product.selected">{{product.productAccountBalances.valor_pago_minimo.amount | format}}</div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Fecha de vencimiento:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances && product.selected">{{product.dueDate | date: 'shortDate'}}</p></div>
+                                    <div class="col-sm-12 progress" [ngClass]="{'m-2': product.selected}" *ngIf="product.capacity">
                                         <div class="progress-bar" role="progressbar" [ngStyle]="{'width': progressBar(product.capacity) + '%'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Uso del {{progressBar(product.capacity)}}%</div>
                                     </div>
                                 </div>
@@ -98,13 +128,25 @@
                                     <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances">{{product.productAccountBalances.saldo_disponible.amount | format}}</p></div>
                                     <div class="col-sm-6 card-key">Saldo ayer:</div>
                                     <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances">{{product.productAccountBalances.saldo_ayer.amount | format}}</p></div>
+
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Cupo sobregiro:</div>
+                                    <div class="col-sm-6 card-value" *ngIf="product.productAccountBalances && product.selected">{{product.productAccountBalances.cupos_aprobado_sobregiro.amount | format}}</div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Saldo canje:</div>
+                                    <div class="col-sm-6 card-value" *ngIf="product.productAccountBalances && product.selected">{{product.productAccountBalances.saldo_canje.amount | format}}</div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Saldo remesas:</div>
+                                    <div class="col-sm-6 card-value" *ngIf="product.productAccountBalances && product.selected">{{product.productAccountBalances.cupo_aprobado_remesas.amount | format}}</div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Fecha de vencimiento:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances && product.selected">{{product.dueDate | date: 'shortDate'}}</p></div>
+                                    <div class="col-sm-6 card-key" *ngIf="product.selected">Última fecha de transacción:</div>
+                                    <div class="col-sm-6 card-value"><p *ngIf="product.productAccountBalances && product.selected">{{product.lastTransactionDate | date: 'shortDate'}}</p></div>
+
                                 </div>
                             </div>    
                         </div>
                         <div class="row">
                             <div class="col-sm-12 p-0" *ngIf="product.productAccountBalances">
-                                <div class="btn">
-                                    ver más <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                <div class="btn" (click)="open(product)">
+                                    ver {{product.selected ? 'menos' : 'más' }} <i [ngClass]="{'fa-arrow-down': !product.selected, 'fa-arrow-up': product.selected}" class="fa" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>

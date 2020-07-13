@@ -1,29 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from './../home.service'
-import { Store, select } from '@ngrx/store'
-import { getTest } from './../../../actions/index'
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  providers: [NgbModalConfig, NgbModal]
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
   constructor(
     private homeService: HomeService,
-    private store: Store<any>,
-    config: NgbModalConfig,
-    private modalService: NgbModal
-  ){
-    config.backdrop = 'static';
-    config.keyboard = false;
-  }
+    private store: Store<any>
+  ){}
 
   productTypes = [];
   banks = [];
@@ -43,7 +34,6 @@ export class HomeComponent implements OnInit {
           this.banks.push(p.accountInformation.bank)
         }
         this.bankSelect("BANCO_1")
-        //this.products = response.products.product.filter(p => p.accountInformation.bank === "BANCO_1")
       })
     })
     setTimeout(function(){ 
@@ -103,17 +93,12 @@ export class HomeComponent implements OnInit {
 
   open(product) {
     this.products = this.products.map(p => {
-      return Object.assign({}, p, { selected : false })
+      if(p.id == product.id && p.selected == false){
+        return Object.assign({}, p, { selected : true })
+      }else{
+        return Object.assign({}, p, { selected : false })
+      } 
     })
-    setTimeout(() => { 
-      this.products = this.products.map(p => {
-        if(p.id == product.id && p.selected == false){
-          return Object.assign({}, p, { selected : true })
-        }else{
-          return Object.assign({}, p, { selected : false })
-        } 
-      })
-    }, 200);
   }
 
 }

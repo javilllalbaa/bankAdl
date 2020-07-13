@@ -23,9 +23,15 @@
         padding: 10px;
         border-radius: 5px;
         box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
-        // .open{
-        //     background-color: red;
-        // }
+        .open{
+            height: 276px !important;
+            position: absolute;
+            z-index: 1;
+            background: #e9ebeb;
+            .btn{
+                bottom: 0px !important;
+            }
+        }
         .card{
             height: 180px;
             overflow: hidden;
@@ -58,6 +64,7 @@
                 bottom: -15px;
                 color: white;
                 border-radius: 5px;
+                cursor: pointer;
             }
         }
     }
