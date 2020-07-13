@@ -3,12 +3,10 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Reducer } from './reducers/index';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { FormatPipe } from './pipes/format.pipe'
 
 @NgModule({
   declarations: [

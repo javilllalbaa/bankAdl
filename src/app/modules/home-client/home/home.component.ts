@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   productTypes = [];
   banks = [];
   products = [];
-  infoProduct = {}
 
   selectProduct = new FormGroup({
     product_select: new FormControl('', Validators.required),
