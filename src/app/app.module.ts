@@ -9,10 +9,12 @@ import { Reducer } from './redux/index';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductEffects } from './redux/product.effect';
+import { LayoutComponent } from './website/home/components/layout/layout.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
