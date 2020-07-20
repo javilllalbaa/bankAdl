@@ -6,16 +6,25 @@ import { WebsiteRoutingModule } from './website-routing.module';
 import { LayoutComponent } from './components/layout/layout.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { creditFormatPipe } from '../pipes/creditFormat.pipe';
+import { FormatPipe } from '../pipes/format.pipe';
 
 
 @NgModule({
   declarations: [
     LayoutComponent, 
     FooterComponent, 
-    HeaderComponent],
+    HeaderComponent,
+    FormatPipe,
+    creditFormatPipe
+  ],
   imports: [
     CommonModule,
-    WebsiteRoutingModule
+    WebsiteRoutingModule,
+  ],
+  exports: [
+    FormatPipe,
+    creditFormatPipe
   ]
 })
 export class WebsiteModule { }

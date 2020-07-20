@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HomeService } from './../modules/home-client/home.service' 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { resquestData, responseData } from './product.action';
 import { switchMap, map } from 'rxjs/operators';
+import { ProductService } from '../core/services/product.service';
 
 @Injectable()
 export class ProductEffects {
 
     constructor(
         private actions$: Actions,
-        private homeService: HomeService
+        private productService: ProductService
     ) {}
  
     productsEfect$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(resquestData),
-            switchMap(() => this.homeService.getJSON().pipe(
+            switchMap(() => this.productService.getJSON().pipe(
                 map((payload)=>responseData({payload}))
             ))
         )   

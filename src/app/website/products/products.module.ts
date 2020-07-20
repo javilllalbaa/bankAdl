@@ -4,13 +4,21 @@ import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import { FilterComponent } from './components/filter/filter.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { WebsiteModule } from '../website.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [FilterComponent, ProductListComponent],
+  declarations: [
+    FilterComponent, 
+    ProductListComponent
+  ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    WebsiteModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProductsModule { }
