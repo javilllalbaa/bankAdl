@@ -30,41 +30,14 @@ export class ProductListComponent implements OnInit {
     }, 500);
   }
 
-  chanceProductTypes(text): string{
-    switch (text) {
-      case "DEPOSIT_ACCOUNT":
-        return "Cuenta deposito"
-      case "CREDIT_CARD":
-        return "Tarjeta de credito"
-      case "CREDIT":
-        return "Credito"
-      case "CERTIFIED_DEPOSIT_TERM":
-        return "Certificado de deposito"
-      case "CURRENT_ACCOUNT":
-        return "Cuenta actual"
-      default:
-      return ""
-    }
-  }
-
   showProductsFilter(event):void {
     this.products$ = this.store.select((data) => {
       return data.products.products.product.filter(p => p.accountInformation.productType === event.product_select && p.accountInformation.bank === event.bank_select)
     })
   }
 
-  progressBar(e): Number{
-    return parseInt(e)
-  }
-
-  open(product) {
-    // this.products = this.products.map(p => {
-    //   if(p.id == product.id && p.selected == false){
-    //     return Object.assign({}, p, { selected : true })
-    //   }else{
-    //     return Object.assign({}, p, { selected : false })
-    //   } 
-    // })
+  changeSeletedProduct(event){
+    debugger
   }
 
 }

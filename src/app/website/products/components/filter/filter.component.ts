@@ -21,7 +21,7 @@ export class FilterComponent {
   productType$: Observable<any>
   banks = [];
 
-  @Output() showproducts = new EventEmitter();
+  @Output() showProducts = new EventEmitter();
 
 
   constructor(
@@ -54,8 +54,7 @@ export class FilterComponent {
   }
 
   productSelect(): void {
-    //debugger
-    this.showproducts.emit(this.selectProduct.value);
+    this.showProducts.emit(this.selectProduct.value);
   }
 
   onSubmit(): void {

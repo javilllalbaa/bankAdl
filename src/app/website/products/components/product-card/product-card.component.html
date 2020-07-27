@@ -1,0 +1,75 @@
+<div class="card m-1">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <h5 class="card-title text-center">{{chanceProductTypes(product.typeAccount)}}</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="icono">
+                    <i class="fa fa-id-card-o" 
+                        [ngClass]=
+                            "{ 
+                                'fa': true, 
+                                'fa-id-card-o': product.typeAccount == 'DEPOSIT_ACCOUNT', 
+                                'fa-credit-card-alt': product.typeAccount == 'CREDIT_CARD', 
+                                'fa-taxi': product.typeAccount == 'CREDIT', 
+                                'fa-address-card-o': product.typeAccount == 'CERTIFIED_DEPOSIT_TERM',
+                                'fa-cc': product.typeAccount == 'CURRENT_ACCOUNT'
+                            }"
+                    ></i>
+                </div>
+            </div>    
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-6 card-key">Identificador:</div>
+                    <div class="col-sm-6 card-value">{{product.id | creditFormat}}</div>
+                </div>
+
+                <div [ngSwitch]="product.typeAccount">
+                    <div *ngSwitchCase="'CERTIFIED_DEPOSIT_TERM'">
+                      <div class="row">
+                        <div class="col-sm-6 card-key">Valor:</div>
+                        <div class="col-sm-6 card-value">{{product.productAccountBalances.valor_constitucion.amount}}</div>
+                        <div class="col-sm-6 card-key">Intereses causados:</div>
+                        <div class="col-sm-6 card-value">{{product.productAccountBalances.intereses_causados.amount}}</div>
+                        <div class="col-sm-6 card-key">Interes pagado:</div>
+                        <div class="col-sm-6 card-value">{{product.productAccountBalances.interes_pagado.amount}}</div>
+                      </div>
+                    </div>
+                    <div *ngSwitchCase="'DEPOSIT_ACCOUNT'">
+                      <div class="row">
+                        <div class="col-sm-6 card-key">Saldo actual:</div>
+                        <div class="col-sm-6 card-value">{{product.productAccountBalances.saldo_actual.amount | format}}/div>
+                        <div class="col-sm-6 card-key">Saldo disponible:</div>
+                        <div class="col-sm-6 card-value">{{product.productAccountBalances.saldo_disponible.amount | format}}</div>
+                        <div class="col-sm-6 card-key">Saldo canje:</div>
+                        <div class="col-sm-6 card-value">{{product.productAccountBalances.saldo_canje.amount | format}}</div>
+                      </div>
+                    </div>
+                    <div *ngSwitchCase="'CREDIT_CARD'">
+                      <div class="row">
+                        <div class="col-sm-6 card-key">Cupo total:</div>
+                        <div class="col-sm-6 card-value">{{ product.productAccountBalances.cupo_total.amount | format}}</div>
+                        <div class="col-sm-6 card-key">Cupo disponible:</div>
+                        <div class="col-sm-6 card-value">{{product.productAccountBalances.cupo_disponible_compras_pesos.amount | format}}</div>
+                      </div>
+                    </div>
+                    <div *ngSwitchCase="'CREDIT'">
+                      <div class="row">
+                        <div class="col-sm-6 card-key">Cupo total:</div>
+                        <div class="col-sm-6 card-value">{{ product.productAccountBalances.cupo_total.amount | format}}</div>
+                        <div class="col-sm-6 card-key">Cupo disponible:</div>
+                        <div class="col-sm-6 card-value">{{product.productAccountBalances.cupo_disponible_compras_pesos.amount | format}}</div>
+                        <div class="col-sm-12 progress" *ngIf="product.capacity">
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{'width': progressBar(product.capacity) + '%'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Uso del {{progressBar(product.capacity)}}%</div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+            </div>    
+        </div>
+    </div>
+</div>

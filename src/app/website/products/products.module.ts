@@ -6,12 +6,13 @@ import { FilterComponent } from './components/filter/filter.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { WebsiteModule } from '../website.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 
 @NgModule({
   declarations: [
     FilterComponent, 
-    ProductListComponent
+    ProductListComponent, ProductCardComponent
   ],
   imports: [
     CommonModule,

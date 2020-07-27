@@ -42,10 +42,20 @@ export interface ProductAccountBalances {
     saldo_actual?: Saldo_actual,
     cupo_disponible_compras_pesos?: Cupo_disponible_compras_pesos,
     valor_pago_minimo?: Valor_pago_minimo,
-    cupo_total?: Cupo_total
+    cupo_total?: Cupo_total,
+    saldo_disponible?: Saldo_disponible,
+    saldo_canje?: Saldo_canje
 }
 
 export interface Saldo_pendiente_pago {
+    amount?: number
+}
+
+export interface Saldo_disponible {
+    amount?: number
+}
+
+export interface Saldo_canje {
     amount?: number
 }
 
@@ -86,8 +96,7 @@ export interface Saldo_mora_pesos {
 }
 
 export interface Saldo_actual {
-    amount?: number,
-    currencyCode?: string
+    amount?: number
 }
 
 export interface Cupo_disponible_compras_pesos {

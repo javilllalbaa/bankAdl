@@ -5,11 +5,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 
 export class creditFormatPipe implements PipeTransform{
-    transform(value:string) : string{
-        if(value.length > 13){
-            return "**** **** **** **" + /.{2}$/.exec(value)
+    transform(value:number) : string{
+        if(value.toString().length > 13){
+            return "**** **** **** **" + /.{2}$/.exec(value.toString())
         }else{
-            return value
+            return value.toString()
         }
     }
 }
