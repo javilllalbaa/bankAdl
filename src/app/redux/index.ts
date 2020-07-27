@@ -1,20 +1,10 @@
-import { Action, State, createReducer, on } from '@ngrx/store'
-import { Data } from './../mockup/data'
-import { responseData } from './product.action'
+import * as productReducer from './products/product.reducer';
+import { ActionReducerMap} from '@ngrx/store';
 
-export const initialState = {products: []};
+export interface State {
+  products: productReducer.ProductsState;
+}
 
-const featureReducer = createReducer(
-    initialState,
-    on(responseData, (state, { payload }) => ({
-      ...state,
-      products: payload
-    }))
-  );
-  
-  export function Reducer(
-    state: any,
-    action: Action
-  ): any {
-    return featureReducer(state, action);
-  }
+export const reducers: ActionReducerMap<State> = {
+  products: productReducer.reducer
+};

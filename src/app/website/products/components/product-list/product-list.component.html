@@ -1,32 +1,7 @@
 <div class="contenedor">
-
+    <app-filter (showproducts)="showProductsFilter($event)"></app-filter>
     <div class="row">
-        <div class="col-sm-12">
-            <form (ngSubmit)="onSubmit()" [formGroup]="selectProduct">
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-sm-6">
-                        <label for="exampleFormControlSelect1">Seleccione el Banco</label>
-                        <select type="text" formControlName="bank_select"
-                          (change)="bankSelect('')" class="custom-select w-100">
-                          <option *ngFor="let bank of banks; let indice = index" [ngValue]="bank">{{bank}}</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-6">
-                      <label for="exampleFormControlSelect1">Seleccione producto</label>  
-                      <select type="text" formControlName="product_select"
-                        (change)="productSelect()" class="custom-select w-100">
-                        <option *ngFor="let productType of productTypes; let indice = index" [ngValue]="productType">{{chanceProductTypes(productType)}}</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="row">
-        <div *ngFor="let product of products; let indice = index" class="col-sm-6 col-md-4">
+        <div *ngFor="let product of products$ | async" class="col-sm-6 col-md-4">
             <div class="card m-1" [ngClass]="{'open': product.selected}">
                 <div class="card-body">
                     <div class="row">
