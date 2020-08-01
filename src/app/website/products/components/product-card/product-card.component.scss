@@ -12,7 +12,7 @@
     overflow: hidden;
     .icono{
         text-align: center;
-        font-size: 50px;
+        font-size: 40px;
     }
     .card-key{
         font-size: 12px;
@@ -40,5 +40,10 @@
         color: white;
         border-radius: 5px;
         cursor: pointer;
+    }
+}
+@media (max-width: 425px) {
+    .card{
+        height: 244px;
     }
 }

@@ -3,14 +3,14 @@
         <form (ngSubmit)="onSubmit()" [formGroup]="selectProduct">
             <div class="form-group">
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-12 col-sm-6">
                     <label for="exampleFormControlSelect1">Seleccione el Banco</label>
                     <select type="text" formControlName="bank_select"
                       (change)="bankSelect()" class="custom-select w-100">
                       <option *ngFor="let bank of banks$ | async" [ngValue]="bank">{{bank}}</option>
                     </select>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-12 col-sm-6">
                   <label for="exampleFormControlSelect1">Seleccione producto</label>  
                   <select type="text" formControlName="product_select"
                     (change)="productSelect()" class="custom-select w-100">

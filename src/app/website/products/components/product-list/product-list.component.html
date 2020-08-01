@@ -1,7 +1,7 @@
 <div class="contenedor">
-    <app-filter (showProducts)="showProductsFilter($event)"></app-filter>
-    <div class="row">
-        <div *ngFor="let product of products$ | async" class="col-sm-6 col-md-4">
+    <app-filter class="filter" (showProducts)="showProductsFilter($event)"></app-filter>
+    <div class="row list_card">
+        <div *ngFor="let product of products$ | async" class="col-sm-6 col-xl-4">
             <app-product-card [product]="product" ></app-product-card>
         </div>
     </div>

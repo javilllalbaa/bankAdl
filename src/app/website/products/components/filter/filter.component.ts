@@ -29,6 +29,7 @@ export class FilterComponent {
   ) {
     this.banks$ = this.store.select((data) => data.products.bank);
     this.productType$ = this.store.select((data) => data.products.productTypes);
+    this.bankSelect()
   }
 
   chanceProductTypes(text): string{
