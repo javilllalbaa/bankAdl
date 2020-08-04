@@ -14,7 +14,7 @@
                   <label for="exampleFormControlSelect1">Seleccione producto</label>  
                   <select type="text" formControlName="product_select"
                     (change)="productSelect()" class="custom-select w-100">
-                    <option *ngFor="let productType of productType$ | async" [ngValue]="productType">{{chanceProductTypes(productType)}}</option>
+                    <option *ngFor="let productType of productType$ | async" [ngValue]="productType">{{ productType | formaTitle }}</option>
                   </select>
                 </div>
               </div>

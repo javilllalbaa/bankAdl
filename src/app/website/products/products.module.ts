@@ -7,12 +7,13 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { WebsiteModule } from '../website.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ModalCardComponent } from './components/modal-card/modal-card.component';
 
 
 @NgModule({
   declarations: [
     FilterComponent, 
-    ProductListComponent, ProductCardComponent
+    ProductListComponent, ProductCardComponent, ModalCardComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,122 @@
+<div class="modal-header text-center">
+    <h4 class="modal-title w-100">{{ product.typeAccount | formaTitle }}</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-12">
+            <div class="icono">
+                <i class="fa fa-id-card-o" 
+                    [ngClass]=
+                        "{ 
+                            'fa': true, 
+                            'fa-id-card-o': product.typeAccount == 'DEPOSIT_ACCOUNT', 
+                            'fa-credit-card-alt': product.typeAccount == 'CREDIT_CARD', 
+                            'fa-taxi': product.typeAccount == 'CREDIT', 
+                            'fa-address-card-o': product.typeAccount == 'CERTIFIED_DEPOSIT_TERM',
+                            'fa-cc': product.typeAccount == 'CURRENT_ACCOUNT'
+                        }"
+                ></i>
+            </div>
+        </div>    
+        <div class="col-12">
+
+            <div class="row">
+                <div class="col-6 col-sm-6 card-key">Identificador:</div>
+                <div class="col-6 col-sm-6 card-value">{{product.id | creditFormat}}</div>
+            </div>
+
+            <div class="row" *ngIf="product.locked">
+                <div class="col-6 col-sm-6 card-key">Estado:</div>
+                <div class="col-6 col-sm-6 card-value">{{ product.locked ? 'Activo' : 'Inactivo' }}</div>
+            </div>
+
+            <div class="row" *ngIf="product.openedDate">
+                <div class="col-6 col-sm-6 card-key">Fecha de inicio:</div>
+                <div class="col-6 col-sm-6 card-value">{{product.openedDate | date: 'shortDate'}}</div>
+            </div>
+
+            <div class="row" *ngIf="product.closedDate">
+                <div class="col-6 col-sm-6 card-key">Fecha de cierre:</div>
+                <div class="col-6 col-sm-6 card-value">{{product.closedDate | date: 'shortDate'}}</div>
+            </div>
+
+            <div class="row" *ngIf="product.lastTransactionDate">
+                <div class="col-6 col-sm-6 card-key">Última fecha de transacción:</div>
+                <div class="col-6 col-sm-6 card-value">{{product.lastTransactionDate | date: 'shortDate'}}</div>
+            </div>
+
+            <div class="row" *ngIf="product.dueDate">
+                <div class="col-6 col-sm-6 card-key">Fecha de vencimiento:</div>
+                <div class="col-6 col-sm-6 card-value">{{product.dueDate | date: 'shortDate'}}</div>
+            </div>
+
+            <div *ngIf="product.productAccountBalances">
+
+                <div class="row" *ngIf="product.productAccountBalances.valor_constitucion">
+                    <div class="col-6 col-sm-6 card-key">Valor:</div>
+                    <div class="col-6 col-sm-6 card-value">{{product.productAccountBalances.valor_constitucion.amount | format}}</div>
+                </div>
+
+                <div class="row" *ngIf="product.productAccountBalances.intereses_causados">
+                    <div class="col-6 col-sm-6 card-key">Intereses causados:</div>
+                    <div class="col-6 col-sm-6 card-value">{{product.productAccountBalances.intereses_causados.amount | format}}</div>
+                </div>
+
+                <div class="row" *ngIf="product.productAccountBalances.interes_pagado">
+                    <div class="col-6 col-sm-6 card-key">Interes pagado:</div>
+                    <div class="col-6 col-sm-6 card-value">{{product.productAccountBalances.interes_pagado.amount | format}}</div>
+                </div>
+
+                <div class="row" *ngIf="product.productAccountBalances.saldo_actual">
+                    <div class="col-6 col-sm-6 card-key">Saldo actual:</div>
+                    <div class="col-6 col-sm-6 card-value">{{product.productAccountBalances.saldo_actual.amount | format}}</div>
+                </div>
+
+                <div class="row" *ngIf="product.productAccountBalances.saldo_disponible">
+                    <div class="col-6 col-sm-6 card-key">Saldo disponible:</div>
+                    <div class="col-6 col-sm-6 card-value">{{product.productAccountBalances.saldo_disponible.amount | format}}</div>
+                </div>
+
+                <div class="row" *ngIf="product.productAccountBalances.saldo_canje">
+                    <div class="col-6 col-sm-6 card-key">Saldo canje:</div>
+                    <div class="col-6 col-sm-6 card-value">{{product.productAccountBalances.saldo_canje.amount | format}}</div>
+                </div>
+
+                <div class="row" *ngIf="product.productAccountBalances.cupo_total">
+                    <div class="col-6 col-sm-6 card-key">Cupo total:</div>
+                    <div class="col-6 col-sm-6 card-value">{{product.productAccountBalances.cupo_total.amount | format}}</div>
+                </div>
+
+                <div class="row" *ngIf="product.productAccountBalances.cupo_disponible_compras_pesos">
+                    <div class="col-6 col-sm-6 card-key">Cupo disponible:</div>
+                    <div class="col-6 col-sm-6 card-value">{{product.productAccountBalances.cupo_disponible_compras_pesos.amount | format}}</div>
+                </div>
+
+                <div class="row" *ngIf="product.productAccountBalances.cupo_disponible_compras_pesos">
+                    <div class="col-6 col-sm-6 card-key">Cupo disponible:</div>
+                    <div class="col-6 col-sm-6 card-value">{{product.productAccountBalances.cupo_disponible_compras_pesos.amount | format}}</div>
+                </div>
+
+                <div class="row" *ngIf="product.productAccountBalances.saldo_canje_24_horas">
+                    <div class="col-6 col-sm-6 card-key">Saldo canje 24 horas:</div>
+                    <div class="col-6 col-sm-6 card-value">{{product.productAccountBalances.saldo_canje_24_horas.amount | format}}</div>
+                </div>
+
+                <div class="row" *ngIf="product.productAccountBalances.saldo_canje_48_horas">
+                    <div class="col-6 col-sm-6 card-key">Saldo canje 48 horas:</div>
+                    <div class="col-6 col-sm-6 card-value">{{product.productAccountBalances.saldo_canje_48_horas.amount | format}}</div>
+                </div>
+
+                <div class="row" *ngIf="product.productAccountBalances.saldo_canje_72_horas">
+                    <div class="col-6 col-sm-6 card-key">Saldo canje 72 horas:</div>
+                    <div class="col-6 col-sm-6 card-value">{{product.productAccountBalances.saldo_canje_72_horas.amount | format}}</div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="closeMyModal(false)">Close</button>
+</div>

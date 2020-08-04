@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ProductModel } from 'src/app/core/models/product.model';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalCardComponent } from '../modal-card/modal-card.component';
 
 @Component({
   selector: 'app-product-card',
@@ -9,36 +11,24 @@ import { ProductModel } from 'src/app/core/models/product.model';
 export class ProductCardComponent implements OnInit {
 
   @Input() product: ProductModel;
+  modalRef: any;
 
-  constructor() { }
+  constructor(
+    private modalService: NgbModal) { }
 
-  ngOnInit(): void { 
-    //debugger
-    console.log("product...", this.product)
-  }
-
-  chanceProductTypes(text): string{
-    switch (text) {
-      case "DEPOSIT_ACCOUNT":
-        return "Cuenta deposito"
-      case "CREDIT_CARD":
-        return "Tarjeta de credito"
-      case "CREDIT":
-        return "Credito"
-      case "CERTIFIED_DEPOSIT_TERM":
-        return "Certificado de deposito"
-      case "CURRENT_ACCOUNT":
-        return "Cuenta actual"
-      default:
-      return ""
-    }
-  }
+  ngOnInit(): void { }
 
   progressBar(e): Number{
     return parseInt(e)
   }
 
   open(product) {
+    this.modalRef = this.modalService.open(ModalCardComponent);
+    this.modalRef.componentInstance.product = product;
+    this.modalRef.componentInstance.closeMyModal = () => {
+      this.modalRef.close();
+    }
   }
+
 
 }

@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { creditFormatPipe } from '../pipes/creditFormat.pipe';
 import { FormatPipe } from '../pipes/format.pipe';
+import { formaTitlePipe } from '../pipes/formaTitle.pipe';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormatPipe } from '../pipes/format.pipe';
     FooterComponent, 
     HeaderComponent,
     FormatPipe,
-    creditFormatPipe
+    creditFormatPipe,
+    formaTitlePipe
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { FormatPipe } from '../pipes/format.pipe';
   ],
   exports: [
     FormatPipe,
-    creditFormatPipe
+    creditFormatPipe,
+    formaTitlePipe
   ]
 })
 export class WebsiteModule { }
